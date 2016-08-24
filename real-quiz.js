@@ -1,3 +1,5 @@
+//
+
 var height = document.getElementById("height");
 var character = document.getElementById("character");
 var myButton = document.getElementById("growIt");

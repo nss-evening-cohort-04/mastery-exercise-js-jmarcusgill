@@ -1,35 +1,37 @@
-var myTree = {
-  height : document.getElementById("height"),
-  character : document.getElementById("character")
-};
-
+var height = document.getElementById("height");
+var character = document.getElementById("character");
 var myButton = document.getElementById("growIt");
 
-function makeTreeGrow () {
-  var heightEntered = myTree.height.value;
-  var charEntered = myTree.character.value;
+function validation () {
+  var myTree = {
+    height: height.value,
+    character: character.value
+  };
+    if (myTree.height === "" || myTree.character === "") {
+      alert("Please provide both a number and a character");
+    } else {
+        console.log("Here be ye tree");
+        makeTreeGrow(myTree);
+    }
+};
 
-  if (heightEntered === "" || charEntered === "") {
-    alert("Please provide both a number and a character");
-  } else {
-      console.log("Here be ye tree")
-      for (var i = 0; i < heightEntered; i++) {
+function makeTreeGrow (myTree) {
+      for (var i = 0; i < myTree.height; i++) {
 
         var math = i*2+1;
-        var treeWidth = charEntered.repeat(math);
+        var treeWidth = myTree.character.repeat(math);
 
-        var spaceMath = ((heightEntered*2-1) - math)/2;
+        var spaceMath = ((myTree.height*2-1) - math)/2;
         var spaceWidth = " ".repeat(spaceMath);
 
         console.log(spaceWidth + treeWidth);
       }
-    }
 };
 
 document.addEventListener("keydown", function (e) {
     if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-        makeTreeGrow();
+        validation();
     }
 });
 
-myButton.addEventListener("click", makeTreeGrow);
+myButton.addEventListener("click", validation);
